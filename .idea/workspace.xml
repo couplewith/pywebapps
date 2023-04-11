@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="fc0a068b-b0e4-4bf8-bbff-dc81d57b4cc1" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/pywebapps.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/ex_myclasses.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/ex_sqlalchemy1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/ex_sqlalchemy2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/example.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/example2.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pyweb3.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/common/Analyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/dbconfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/common/dbconfig.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/dbtest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/chat_GPT/opeai2-simple.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/chat_GPT/openai_example1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/news_crawling/get_news_headline2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/news_crawling/get_news_headline_webdrive.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/news_crawling/get_news_simple.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,11 +32,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/github/pywebapps"
+    "last_opened_file_path": "D:/github/pywebapps/python_study",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\github\pywebapps\python_study" />
       <recent name="D:\github\pywebapps" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
