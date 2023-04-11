@@ -93,4 +93,26 @@ print(testUsers)
 
 # id 열을 기준으로 내림차순으로 정렬한 결과 반환
 testUsers = db_session.query(User).filter(User.name.like('test%')).order_by(desc(User.id)).all()
-print(testUsers)
+print('> like :', testUsers)
+
+
+
+# id 열을 기준으로 내림차순으로 정렬한 결과 반환
+testUsers = db_session.query(User).filter(User.name.in_(['test1','test2','test3'])).order_by(desc(User.id)).all()
+print('> IN :', testUsers)
+
+
+
+# IS NULL, IS NOT NULL : None
+
+testUsers = db_session.query(User).filter(User.email.is_(None)).all()
+print('> IS NULL :', testUsers)
+
+testUsers = db_session.query(User).filter(User.email.isnot(None)).all()
+print('> IS NOT NULL :', testUsers)
+
+
+# and
+from sqlalchemy import and_
+for user in db_session.query(User).filter(and_(User.name == 'test2',User.email == 'btest20@amail.com')):
+    print('> _and :', testUsers)

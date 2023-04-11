@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc0a068b-b0e4-4bf8-bbff-dc81d57b4cc1" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/python_study/lec04_sqlalchemy/lec04_bulk_err.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_study/lec04_sqlalchemy/db/_lec04_bulk.db" beforeDir="false" afterPath="$PROJECT_DIR$/python_study/lec04_sqlalchemy/db/_lec04_bulk.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_study/lec04_sqlalchemy/lec04_bulk_delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_study/lec04_sqlalchemy/lec04_bulk_delete.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
