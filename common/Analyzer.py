@@ -1,9 +1,13 @@
+# 주식종목 크롤링하여 DB로 저장하기
+
 import pandas as pd
 import pymysql
 import sqlite3
 from datetime import datetime
 from datetime import timedelta
 import re
+
+
 
 class MarketDB:
     dbconfig_file = 'dbconfig.properties'
