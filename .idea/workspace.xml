@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fc0a068b-b0e4-4bf8-bbff-dc81d57b4cc1" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/pywebapps.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/ex_myclasses.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/ex_sqlalchemy1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/ex_sqlalchemy2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/example.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/sqlalchemy/example2.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pyweb3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/common/Analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/dbconfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/common/dbconfig.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/stockdb/dbtest.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OG7Hz8a7Ok0tg2BuGCW18A31w6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "D:/github/pywebapps"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\github\pywebapps" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\github\pywebapps\stockdb" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="fc0a068b-b0e4-4bf8-bbff-dc81d57b4cc1" name="변경" comment="" />
+      <created>1681174980235</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681174980235</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

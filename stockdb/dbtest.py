@@ -1,5 +1,4 @@
-import matplotlib.pyplot as plt
-from common import Analyzer
+from stockdb.common import Analyzer
 
 mk = Analyzer.MarketDB('sqllite')
 
