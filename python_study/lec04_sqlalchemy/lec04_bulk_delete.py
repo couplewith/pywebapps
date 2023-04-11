@@ -1,9 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy.exc import IntegrityError
 
-from sqlalchemy.dialects.sqlite import insert
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import FlushError
 from sqlalchemy import desc
@@ -13,7 +11,7 @@ from sqlalchemy import desc
 # 데이터베이스 연결 설정
 engine = create_engine('sqlite:///db/_lec04_bulk.db')  # SQLite 데이터베이스 사용
 db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False,bind=engine))
-# engine = create_engine('sqlite:///db/lec04.db', strategy=ASYNCIO_STRATEGY )  # SQLite 데이터베이스 사용
+
 Base = declarative_base()
 
 #데이터베이스 초기화 함수
