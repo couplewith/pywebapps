@@ -1,0 +1,43 @@
+{# #templates 
+jinaja2에서 사용가능한 전역객체
+- config: 현재 어플리케이션에 등록된 설정 객체 (flask.config)
+- request : 현재 요청된 객체  (flask.request)
+- session : 현재 유지되고 있는 세견 객체 (flask.session)
+- g : 연역 변수로 사용되는 요청과 연결된 전역객체  (flask.g)
+- url_for : 현재 요청된 객체  (flask.url_for)
+- get_flashed_message  : 뷰함수에서 flash 함수를 사용해서 저장한 메시지를 얻어오는 함수 (flask.get_flashed_message)
+
+#}
+
+{% extends "layout.html" %}
+{% block title %}
+  전체 트윗글 목록
+{% endblock %}
+{% block body %}
+<h2> {{ self.title() }}</h2>
+
+{% if g.user %}
+<div class=twitbox>
+  <h3> 어떤 일이 있나요 ? </h3>
+  <form action = "/add_message" method="POST" >
+    <p>
+      <input type="text" name="text" size=60 >
+      <input type="submit" value="공유하기" >
+     </p>
+  </form>
+</div>
+{% endif %}
+<ul class="messages">
+  {% for message in messages %}
+     <li>
+       <p> 
+         <strong> {{ message.user_name }} </strong>
+         {{ message.text }}
+         <small> {{ message.pub_date }} </small>
+       </p>
+     </li>
+  {% else %}
+     <li> 메시지자 없습니다. </li>
+  {% endfor %}
+</ul>
+{% endblock %}

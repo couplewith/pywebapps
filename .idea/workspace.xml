@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc0a068b-b0e4-4bf8-bbff-dc81d57b4cc1" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/python_study/chat_GPT/opeai2-simple.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/chat_GPT/openai_example1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/news_crawling/get_news_headline2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/news_crawling/get_news_headline_webdrive.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_study/news_crawling/get_news_simple.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/html5app/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/html5app/link2image.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/html5app/link2image.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_study/html5app/link2image_simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

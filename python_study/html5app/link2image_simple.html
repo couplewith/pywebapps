@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>웹 페이지 링크 이미지 생성기</title>
+   <style>
+     /* 스타일 설정 */
+     body {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       height: 100vh;
+     }
+     form {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       margin-bottom: 20px;
+     }
+     label {
+       margin-bottom: 10px;
+       font-size: 1.2rem;
+       font-weight: bold;
+     }
+     input[type="text"] {
+       margin-bottom: 20px;
+       padding: 5px;
+       font-size: 1.2rem;
+       border: 2px solid #ccc;
+       border-radius: 5px;
+       width: 400px;
+       max-width: 100%;
+     }
+     button {
+       padding: 10px 20px;
+       font-size: 1.2rem;
+       font-weight: bold;
+       color: #fff;
+       background-color: #007bff;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: background-color 0.2s ease-in-out;
+     }
+     button:hover {
+       background-color: #0062cc;
+     }
+     img {
+       margin-top: 20px;
+       max-width: 100%;
+     }
+   </style>
+ </head>
+ <body>
+   <!-- 입력 폼 -->
+   <form id="link-form">
+     <label for="link-input">링크 주소:</label>
+     <input type="text" id="link-input" name="link" placeholder="https://example.com">
+     <button type="submit">이미지 생성</button>
+   </form>
+
+   <!-- 이미지 표시 -->
+   <div id="image-container"></div>
+
+   <!-- 스크립트 -->
+   <script>
+     const form = document.getElementById('link-form');
+     const imageContainer = document.getElementById('image-container');
+
+     form.addEventListener('submit', e => {
+       e.preventDefault();
+       const link = form.link.value;
+       const imageUrl = `https://api.microlink.io/?url=${encodeURIComponent(link)}&screenshot=true`;
+       const image = document.createElement('img');
+       image.src = imageUrl;
+       image.alt = '링크 이미지';
+       imageContainer.innerHTML = '';
+       imageContainer.appendChild(image);
+     });
+   </script>
+ </body>
+</html>
+
+</body>
+</html>

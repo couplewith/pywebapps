@@ -1,0 +1,80 @@
+
+
+div.container h2 {
+  color : #105757;
+  text-shadow : 0 1px 2px #ccc;
+  margin : 0 0 10px 0;
+}
+
+
+
+div.container div.footer {
+  margin : 10px 0;
+  bakground : #679974;
+  color : #eee;
+  font-size : 12px;
+  padding : 7px 10pxl
+  text-align : center;
+}
+
+div.error {
+  margin : 10px 0;
+  bakground : #fae4e4;
+  border : 1px solid #dd6f6f;
+  border-radius : 2px;
+  padding: 4px;
+  font-size : 13px;
+}
+
+div.container div.twitbox {
+  margin : 10px 0;
+  padding : 5px;
+  background : #f0faf9;
+  border : 1px solid #94e2da;
+  border-radius : 5px;
+}
+
+div.container div.twitbox p {
+  margin : 0
+}
+
+div.container div.twitbox input[type="text"] {
+  width : 600px;
+}
+
+div.container div.twitbox input[type="submit"] {
+  width : 100px;
+  margin-left: 5px;
+}
+
+ul.flashes{
+  list-style : none;
+  margin: 10px 10px;
+}
+
+
+ul.flashes li{
+  list-style : none;
+  margin: 0;
+  padding :0;
+}
+
+div.container ul.messages{
+  list-style : none;
+  margin: 0;
+  padding :0;
+}
+
+
+div.container ul.messages.li{
+  margin : 10px 0;
+  padding : 10px;
+  background : #f0faf9;
+  border : 1px solid #dbf31;
+  border-radius : 5px;
+  min-height : 48px;
+}
+
+div.container ul.messages p{
+  margin : 0;
+}
