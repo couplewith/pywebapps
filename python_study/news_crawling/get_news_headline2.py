@@ -1,5 +1,4 @@
 import requests
-from selenium import webdriver
 from bs4 import BeautifulSoup
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -35,7 +34,7 @@ for news in soup.select(html_selector):
 
 if (DEBUG) :
    print(news_titles[0])
-   print(news_titles[no])
+   print(news_titles[no-1])
    print (no)
 
 
