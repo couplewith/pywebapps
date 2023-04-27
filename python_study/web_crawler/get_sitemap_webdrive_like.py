@@ -1,6 +1,11 @@
 import requests
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+
 from bs4 import BeautifulSoup
 from time import sleep
 
@@ -54,8 +59,17 @@ for url in soup.find_all('url'):
     page_title = page_soup.title.text
     print(no, page_title, page_url)
     blog_links.append({'title': page_title, 'url': page_url})
-    no = no + 1
-    sleep(2)  # delay for next page
+    # Like 클릭 여부 확인
+    try:
+        like_button = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon')))
+        like_button.click()
+        print (">> new Liked ----")
+    except TimeoutException:
+        #like_button = driver.find_element(By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')
+        print("Like button is not found.")
+    finally:
+        no = no + 1
+        sleep(2)  # delay for next page
 
 
 driver.quit()
