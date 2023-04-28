@@ -1,9 +1,12 @@
 import requests
+import re
 from selenium import webdriver
+#from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import ActionChains
 from selenium.common.exceptions import TimeoutException
 
 from bs4 import BeautifulSoup
@@ -24,16 +27,24 @@ def set_driver(browser, mode):
             options.add_argument('--headless')  # run Chrome in headless mode (without a UI)
         options.add_argument('--ignore-certificate-errors')
         options.add_argument(user_agent)
-
         driver = webdriver.Chrome(options=options)
+
+    elif browser == 'firefox':
+        options = webdriver.FirefoxOptions()
+        if ui_mode != 1:
+            options.headless = True # run Firefox in headless mode (without a UI)
+        options.accept_insecure_certs = True
+        options.set_preference("general.useragent.override", user_agent)
+        driver = webdriver.Firefox(options=options)
+
     else:
         options = webdriver.EdgeOptions()
         if ui_mode != 1:
             options.add_argument('--headless')  # run Chrome in headless mode (without a UI)
         options.add_argument('--ignore-certificate-errors')
         options.add_argument(user_agent)
-
         driver = webdriver.Edge(options=options)
+
     return driver
 
 ###################################################################
@@ -48,11 +59,22 @@ response = requests.get(sitemap_url, verify=False)
 soup = BeautifulSoup(response.content, 'xml')
 blog_links = []
 no = 0
-
+pattern=r'/[0-9]{1,3}'
 for url in soup.find_all('url'):
+    loc_tag = url.find('loc')
+    if loc_tag is None:
+        print(" > Skipped ~ Tag continue - ", url)
+        continue
+    url_str = loc_tag.text
+    matched = re.search(pattern, url_str)
+    if not matched:
+        print(" > Skipped ~ continue - ", url_str)
+        continue
+
     page_url = url.findNext('loc').text
     driver.get(page_url)
-    sleep(0.9)  # wait for page to load
+    driver.implicitly_wait(4)  # default 0 seconds : implicitly_wait
+
     # scroll to the bottom of the page
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     page_soup = BeautifulSoup(driver.page_source, 'html.parser')
