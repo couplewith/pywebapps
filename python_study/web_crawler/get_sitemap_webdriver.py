@@ -19,16 +19,24 @@ def set_driver(browser, mode):
             options.add_argument('--headless')  # run Chrome in headless mode (without a UI)
         options.add_argument('--ignore-certificate-errors')
         options.add_argument(user_agent)
-
         driver = webdriver.Chrome(options=options)
+
+    elif browser == 'firefox':
+        options = webdriver.FirefoxOptions()
+        if ui_mode != 1:
+            options.headless = True # run Firefox in headless mode (without a UI)
+        options.accept_insecure_certs = True
+        options.set_preference("general.useragent.override", user_agent)
+        driver = webdriver.Firefox(options=options)
+
     else:
         options = webdriver.EdgeOptions()
         if ui_mode != 1:
             options.add_argument('--headless')  # run Chrome in headless mode (without a UI)
         options.add_argument('--ignore-certificate-errors')
         options.add_argument(user_agent)
-
         driver = webdriver.Edge(options=options)
+
     return driver
 
 ###################################################################
