@@ -89,12 +89,13 @@ for url in soup.find_all('url'):
         # ActionChains를 이용하여, like_button 요소의 위치로 이동한 후, click() 메소드를 실행 클릭합니다.
         like_button = WebDriverWait(driver, 5).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon')))
+        like_text = like_button.text.strip()
         # 요소를 클릭할 수 있는 위치로 이동
         ActionChains(driver).move_to_element(like_button).perform()
         # 클릭 실행
         ActionChains(driver).click().perform()
 
-        print (">> new Liked ----")
+        print (">> new Liked ---->", like_text)
     except TimeoutException:
         #like_button = driver.find_element(By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')
         print("Like button is not found.")
