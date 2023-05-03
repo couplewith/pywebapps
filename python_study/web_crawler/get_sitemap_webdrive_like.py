@@ -88,18 +88,18 @@ for url in soup.find_all('url'):
         #like_button.click()
         # like 화면이 보이지 않는 상태에서 오류가 나는 것을 방지
         # ActionChains를 이용하여, like_button 요소의 위치로 이동한 후, click() 메소드를 실행 클릭합니다.
-        like_button = WebDriverWait(driver, 6).until(
+        like_button = WebDriverWait(driver, 7).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon')))
         like_text = like_button.text.strip()
-        like_button.click()
+
 
         # # 요소를 클릭할 수 있는 위치로 이동
-        # ActionChains(driver).move_to_element(like_button).perform()
+        ActionChains(driver).move_to_element(like_button).perform()
         # # 클릭 실행
         # ActionChains(driver).click().perform()
+        like_button.click()
 
-
-        like_button_aft = WebDriverWait(driver, 5).until(
+        like_button_aft = WebDriverWait(driver, 7).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')))
         like_text_aft = like_button_aft.text.strip()
 
