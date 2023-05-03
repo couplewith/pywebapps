@@ -11,7 +11,8 @@ from selenium.common.exceptions import TimeoutException
 
 from bs4 import BeautifulSoup
 from time import sleep
-
+import urllib3
+urllib3.disable_warnings()
 
 
 def set_driver(browser, mode):
@@ -59,7 +60,7 @@ response = requests.get(sitemap_url, verify=False)
 soup = BeautifulSoup(response.content, 'xml')
 blog_links = []
 no = 0
-pattern=r'/[0-9]{1,3}'
+pattern = r'/[0-9]{1,3}'
 for url in soup.find_all('url'):
     loc_tag = url.find('loc')
     if loc_tag is None:
@@ -87,22 +88,44 @@ for url in soup.find_all('url'):
         #like_button.click()
         # like 화면이 보이지 않는 상태에서 오류가 나는 것을 방지
         # ActionChains를 이용하여, like_button 요소의 위치로 이동한 후, click() 메소드를 실행 클릭합니다.
-        like_button = WebDriverWait(driver, 5).until(
+        like_button = WebDriverWait(driver, 6).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon')))
         like_text = like_button.text.strip()
-        # 요소를 클릭할 수 있는 위치로 이동
-        ActionChains(driver).move_to_element(like_button).perform()
-        # 클릭 실행
-        ActionChains(driver).click().perform()
+        like_button.click()
 
-        print (">> new Liked ---->", like_text)
+        # # 요소를 클릭할 수 있는 위치로 이동
+        # ActionChains(driver).move_to_element(like_button).perform()
+        # # 클릭 실행
+        # ActionChains(driver).click().perform()
+
+
+        like_button_aft = WebDriverWait(driver, 5).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')))
+        like_text_aft = like_button_aft.text.strip()
+
+        print (">> new Liked ---->", like_text, like_text_aft )
     except TimeoutException:
         #like_button = driver.find_element(By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')
         print("Like button is not found.")
+    except ElementClickInterceptedException:
+        print("ElementClickInterceptedException: Like button is not clickable.")
     finally:
         no = no + 1
         sleep(2)  # delay for next page
 
 
 driver.quit()
-print(len(blog_links),blog_links[no-1] )
+print(no)
+if no > 1:
+    print(len(blog_links),blog_links[no-1])
+else:
+    print(len(blog_links), blog_links)
+
+
+# Usage :
+# python get_sitemap_webdrive_like.py
+# 1) cannot browser in PATH  :
+#  - First Execute your browser(edge,firefox...) on your desktop then beautifulsoup can access browser.
+#    if not it will occur error with "not found edge browser".
+# 2) Using WebDriverWait
+#  - "If the requested contents are not presented, driver.find_element will not find any matching element."
