@@ -7,8 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
-from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
-
+from selenium.common.exceptions import TimeoutException
 
 from bs4 import BeautifulSoup
 from time import sleep
@@ -88,21 +87,20 @@ for url in soup.find_all('url'):
         #like_button = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon')))
         #like_button.click()
         # like 화면이 보이지 않는 상태에서 오류가 나는 것을 방지
+        # ActionChains를 이용하여, like_button 요소의 위치로 이동한 후, click() 메소드를 실행 클릭합니다.
+        like_button = WebDriverWait(driver, 7).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon')))
+        like_text = like_button.text.strip()
 
-        # # ActionChains를 이용하여, like_button 요소의 위치로 이동한 후, click() 메소드를 실행 클릭합니다.
-        # like_button = WebDriverWait(driver, 7).until( EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon')))
-        # # # 요소를 클릭할 수 있는 위치로 이동
-        # ActionChains(driver).move_to_element(like_button).perform()
-        # like_text = like_button.text.strip()
-        # like_button.click()
 
+        # # 요소를 클릭할 수 있는 위치로 이동
+        ActionChains(driver).move_to_element(like_button).perform()
         # # 클릭 실행
         # ActionChains(driver).click().perform()
-        like_button = WebDriverWait(driver, 7).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
-        like_text = like_button.text.strip()
         like_button.click()
 
-        like_button_aft = WebDriverWait(driver, 7).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')))
+        like_button_aft = WebDriverWait(driver, 7).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')))
         like_text_aft = like_button_aft.text.strip()
 
         print (">> new Liked ---->", like_text, like_text_aft )
@@ -131,7 +129,3 @@ else:
 #    if not it will occur error with "not found edge browser".
 # 2) Using WebDriverWait
 #  - "If the requested contents are not presented, driver.find_element will not find any matching element."
-#
-# 브라우저가 작동이 안될때
-# D:\github\pywebapps\venv\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser edge --output json
-# Selenium Grid의 구성 요소 중 하나인 Selenium Standalone Server를 시작하는 데 사용됩니다.
