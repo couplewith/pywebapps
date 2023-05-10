@@ -102,10 +102,10 @@ for url in soup.find_all('url'):
         like_text = like_button.text.strip()
         like_button.click()
 
-        like_button_aft = WebDriverWait(driver, 7).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')))
+        like_button_aft = WebDriverWait(driver, 7).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')))
         like_text_aft = like_button_aft.text.strip()
 
-        print (">> new Liked ---->", like_text, like_text_aft )
+        print(">> new Liked ---->", like_text, like_text_aft )
     except TimeoutException:
         #like_button = driver.find_element(By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')
         print("Like button is not found.")
@@ -132,6 +132,6 @@ else:
 # 2) Using WebDriverWait
 #  - "If the requested contents are not presented, driver.find_element will not find any matching element."
 #
-# 브라우저가 작동이 안될때
+# 브라우저가 작동이 안될때 pycharm 터미널에 실행
 # D:\github\pywebapps\venv\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser edge --output json
 # Selenium Grid의 구성 요소 중 하나인 Selenium Standalone Server를 시작하는 데 사용됩니다.
