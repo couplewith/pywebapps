@@ -111,6 +111,8 @@ for url in soup.find_all('url'):
         print("Like button is not found.")
     except ElementClickInterceptedException:
         print("ElementClickInterceptedException: Like button is not clickable.")
+    except UnexpectedAlertPresentException :
+        print("UnexpectedAlert Alert Text: 유효하지 않은 요청입니다.")
     finally:
         no = no + 1
         sleep(2)  # delay for next page
