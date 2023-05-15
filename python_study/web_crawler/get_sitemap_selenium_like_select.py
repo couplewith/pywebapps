@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
-from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, UnexpectedAlertPresentException
 
 from bs4 import BeautifulSoup
 from time import sleep
@@ -111,6 +111,8 @@ for url in soup.find_all('url'):
         print("ElementClickInterceptedException: Like button is not clickable.")
     except UnexpectedAlertPresentException :
         print("UnexpectedAlert Alert Text: 유효하지 않은 요청입니다.")
+        alert = driver.switch_to.alert
+        alert.dismiss()
     finally:
         no = no + 1
         sleep(2)  # delay for next page

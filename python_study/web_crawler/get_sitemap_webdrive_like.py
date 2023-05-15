@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
-from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, UnexpectedAlertPresentException
 
 
 from bs4 import BeautifulSoup
@@ -27,6 +27,10 @@ def set_driver(browser, mode):
         options = webdriver.ChromeOptions()
         if ui_mode != 1:
             options.add_argument('--headless')  # run Chrome in headless mode (without a UI)
+            options.add_argument('--log-level=3')
+            options.add_argument('--disable-logging')
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-gpu')
         options.add_argument('--ignore-certificate-errors')
         options.add_argument(user_agent)
         driver = webdriver.Chrome(options=options)
@@ -43,6 +47,10 @@ def set_driver(browser, mode):
         options = webdriver.EdgeOptions()
         if ui_mode != 1:
             options.add_argument('--headless')  # run Chrome in headless mode (without a UI)
+            options.add_argument('--log-level=3')
+            options.add_argument('--disable-logging')
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-gpu')
         options.add_argument('--ignore-certificate-errors')
         options.add_argument(user_agent)
         driver = webdriver.Edge(options=options)
@@ -61,7 +69,7 @@ response = requests.get(sitemap_url, verify=False)
 soup = BeautifulSoup(response.content, 'xml')
 blog_links = []
 no = 0
-pattern = r'/[0-9]{1,3}'
+pattern = r'com/[0-9]{1,3}'
 for url in soup.find_all('url'):
     loc_tag = url.find('loc')
     if loc_tag is None:
@@ -111,8 +119,10 @@ for url in soup.find_all('url'):
         print("Like button is not found.")
     except ElementClickInterceptedException:
         print("ElementClickInterceptedException: Like button is not clickable.")
-    except UnexpectedAlertPresentException :
+    except UnexpectedAlertPresentException:
         print("UnexpectedAlert Alert Text: 유효하지 않은 요청입니다.")
+        alert = driver.switch_to.alert
+        alert.accept()  # 확인 버튼을 클릭하여 Alert창을 닫는 방법
     finally:
         no = no + 1
         sleep(2)  # delay for next page
