@@ -70,6 +70,7 @@ soup = BeautifulSoup(response.content, 'xml')
 blog_links = []
 no = 0
 pattern = r'com/[0-9]{1,3}'
+pattern = r'com/42'
 for url in soup.find_all('url'):
     loc_tag = url.find('loc')
     if loc_tag is None:
@@ -105,12 +106,15 @@ for url in soup.find_all('url'):
         # like_button.click()
 
         # # 클릭 실행
+        page_timeout = 3
         # ActionChains(driver).click().perform()
-        like_button = WebDriverWait(driver, 7).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
+        like_button = WebDriverWait(driver, page_timeout).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
         like_text = like_button.text.strip()
-        like_button.click()
 
-        like_button_aft = WebDriverWait(driver, 7).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')))
+        like_button.click()
+        like_button_aft = WebDriverWait(driver, page_timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on'))
+        )
         like_text_aft = like_button_aft.text.strip()
 
         print(">> new Liked ---->", like_text, like_text_aft )
@@ -121,8 +125,13 @@ for url in soup.find_all('url'):
         print("ElementClickInterceptedException: Like button is not clickable.")
     except UnexpectedAlertPresentException:
         print("UnexpectedAlert Alert Text: 유효하지 않은 요청입니다.")
-        alert = driver.switch_to.alert
-        alert.accept()  # 확인 버튼을 클릭하여 Alert창을 닫는 방법
+        try:
+            alert = WebDriverWait(driver, page_timeout).until(EC.alert_is_present())
+            alert = driver.switch_to.alert
+            alert.accept()
+            # alert.dismiss()
+        except:
+            pass  # 오류 무시
     finally:
         no = no + 1
         sleep(2)  # delay for next page
@@ -147,3 +156,6 @@ else:
 # 브라우저가 작동이 안될때 pycharm 터미널에 실행
 # D:\github\pywebapps\venv\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser edge --output json
 # Selenium Grid의 구성 요소 중 하나인 Selenium Standalone Server를 시작하는 데 사용됩니다.
+# 3) Alert 창 관련  https://couplewith.tistory.com/428
+#   - UnexpectedAlert Alert Text: 유효하지 않은 요청입니다.
+#   - Message: unexpected alert open: {Alert text : 유효하지 않은 요청입니다.}
