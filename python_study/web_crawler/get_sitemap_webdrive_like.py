@@ -69,8 +69,9 @@ response = requests.get(sitemap_url, verify=False)
 soup = BeautifulSoup(response.content, 'xml')
 blog_links = []
 no = 0
+action_timeout = 3
+
 pattern = r'com/[0-9]{1,3}'
-pattern = r'com/42'
 for url in soup.find_all('url'):
     loc_tag = url.find('loc')
     if loc_tag is None:
@@ -106,13 +107,13 @@ for url in soup.find_all('url'):
         # like_button.click()
 
         # # 클릭 실행
-        page_timeout = 3
+        #action_timeout = 3
         # ActionChains(driver).click().perform()
-        like_button = WebDriverWait(driver, page_timeout).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
+        like_button = WebDriverWait(driver, action_timeout).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
         like_text = like_button.text.strip()
 
         like_button.click()
-        like_button_aft = WebDriverWait(driver, page_timeout).until(
+        like_button_aft = WebDriverWait(driver, action_timeout).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on'))
         )
         like_text_aft = like_button_aft.text.strip()
@@ -126,7 +127,7 @@ for url in soup.find_all('url'):
     except UnexpectedAlertPresentException:
         print("UnexpectedAlert Alert Text: 유효하지 않은 요청입니다.")
         try:
-            alert = WebDriverWait(driver, page_timeout).until(EC.alert_is_present())
+            alert = WebDriverWait(driver, action_timeout).until(EC.alert_is_present())
             alert = driver.switch_to.alert
             alert.accept()
             # alert.dismiss()
