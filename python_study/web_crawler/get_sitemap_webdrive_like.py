@@ -165,12 +165,15 @@ for go_url in page_lists:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         page_soup = BeautifulSoup(driver.page_source, 'html.parser')
         page_title = page_soup.title.text
-        blog_links.append({'title': page_title, 'url': go_url})
+        like_text = ''
+        like_text_aft = ''
+
         print(no, page_title, go_url)
 
         print(" > check element_to_be_clickable  ")
         like_button = WebDriverWait(driver, action_timeout).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
         like_text = like_button.text.strip()
+        like_text_aft = like_text
 
 
         like_button.click()
@@ -197,12 +200,14 @@ for go_url in page_lists:
         alert_handle2(driver,3)
     finally:
         driver.set_page_load_timeout(0)
-        print(">  finally done !! - ", no, get_elapsed())
+        blog_links.append({'title': page_title, 'url': go_url, 'like': like_text, 'like_aft': like_text_aft})
+        print(">  finally done !! - ", no, like_text, like_text_aft, get_elapsed())
         continue
 
 
 driver.quit()
-print(no)
+print(no, blog_links)
+
 if no > 1:
     print(len(blog_links),blog_links[-1:])
 else:
