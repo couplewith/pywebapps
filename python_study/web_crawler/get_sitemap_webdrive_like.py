@@ -1,20 +1,19 @@
+from selenium import webdriver
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, \
+    UnexpectedAlertPresentException
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.alert import Alert
+# from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 import requests
 import re
 import time
-from selenium import webdriver
-#from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver import ActionChains
-from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, UnexpectedAlertPresentException
-from selenium.webdriver.common.alert import Alert
 
-
-from bs4 import BeautifulSoup
-from time import sleep
 import urllib3
+from bs4 import BeautifulSoup
 urllib3.disable_warnings()
 
 
@@ -37,7 +36,7 @@ def set_driver(browser, mode):
         options.add_argument('--ignore-certificate-errors')
         # options.add_argument("--disable-notifications"); # < old version 50.x
         # > new version 50.x
-        option.add_experimental_option("prefs", {"profile.default_content_setting_values.notifications": 1})
+        options.add_experimental_option("prefs", {"profile.default_content_setting_values.notifications": 1})
         options.add_argument(user_agent)
         driver = webdriver.Chrome(options=options)
 
@@ -77,7 +76,7 @@ def get_elapsed():
     return " > Elapsed: {:.2f} seconds".format(elapsed_time)
 
 
-def alert_handlealert_handle(driver, accept=True, timeout=3):
+def alert_handle(driver, accept=True, timeout=3):
     try:
         print(" > alert_handle: - ", get_elapsed())
         driver.implicitly_wait(timeout)
@@ -144,7 +143,6 @@ for url in soup.find_all('url'):
         print(" > Skipped ~ continue - ", url_str)
         continue
 
-    page_url = url.findNext('loc').text
     page_url = url.findNext('loc').text
     page_lists.append(page_url)
 
