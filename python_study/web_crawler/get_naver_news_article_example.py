@@ -37,30 +37,26 @@ driver = webdriver.Chrome()
 
 
 
-tag_first_article = "#today_main_news > div.hdline_news > ul > li:nth-child(1) > div.hdline_article_tit > a"
-tag_title = "#articleTitle"
-tag_contents = "#articleBodyContents"
-
-# 메인 헤드라인
-news_url="https://news.naver.com"
-tag_first_article = "#ct > div > section.main_content > div.main_brick > div > div:nth-child(1) > div.main_brick_item._press_main_status_wrapper > div > div.cjs_news_flash_wrap.cjs_nf_close._newsflash_wrapper > div.cjs_nf_list._item_list > a:nth-child(2) > div > h4"
-
-# 경제 - 헤드라인
+# # 메인 헤드라인 : (OK)
+# news_url="https://news.naver.com"
+# tag_first_article = "#ct > div > section.main_content > div.main_brick > div > div:nth-child(1) > div.main_brick_item._press_main_status_wrapper > div > div.cjs_news_flash_wrap.cjs_nf_close._newsflash_wrapper > div.cjs_nf_list._item_list > a:nth-child(2) > div > h4"
+#
+# 경제 - 헤드라인 : (OK)
 news_url="https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=101"
-tag_biz_artitle = "#main_content > div > div._persist > div:nth-child(1) > div:nth-child(1) > div.cluster_body > ul > li:nth-child(1) > div.cluster_text > a"
+tag_first_article = "#main_content > div > div._persist > div:nth-child(1) > div:nth-child(1) > div.cluster_body > ul > li:nth-child(1) > div.cluster_text > a"
 tag_title = "#title_area"
 tag_contents = "#contents"
 
-tag_first_article = tag_biz_artitle
-tag_title = tag_title
-tag_contents = tag_contents
+# news_url="https://news.naver.com"
+# tag_first_article = "#ct > div > section.main_content > div.main_brick > div > div:nth-child(1) > div.main_brick_item._press_main_status_wrapper > div > div.cjs_news_flash_wrap.cjs_nf_close._newsflash_wrapper > div.cjs_nf_list._item_list > a:nth-child(2) > div > h4"
 
-# 페이지 접속
+# 첫 번째 기사 클릭하여 뉴스 본문으로 이동하고 제목과 내용을 추출 한다.
+
+# (1) 페이지 접속
 driver.get(news_url)
 driver.implicitly_wait(5) # 10초 대기
-# 첫 번째 기사 클릭
-# 특정 영역을 포함한 부모 요소를 찾아서 저장
 
+# (2) 특정 영역을 포함한 부모 요소를 찾아서 링크를 클릭한다.
 (first_article, status) = get_tag_element_wait(tag_first_article)
 print (first_article)
 if first_article != None:
@@ -69,9 +65,10 @@ else:
     print(" article not found")
     exit(1)
 
-
+# (3) 기사 본문 페이지 로딩을 위해 명시적으로 대기 한다.
 driver.implicitly_wait(5) # 10초 대기
 
+# (4) 기사 본문의 제목과 내용을 수집한다.
 title = ''
 (element, status ) = get_tag_element_wait(tag_title)
 if element!=None:
@@ -86,10 +83,10 @@ print(content, status, tag_contents )
 
 
 
-# 추출한 데이터 저장
-with open('article.txt', 'w', encoding='utf-8') as f:
+# (5) 기사 본문의 제목과 내용을 저장한다.
+with open('example/article.txt', 'w', encoding='utf-8') as f:
     f.write(f"제목 : {title}\n\n")
     f.write(content)
 
-# 브라우저 닫기
+# (6) 브라우저 닫고 종료한다.
 driver.quit()
