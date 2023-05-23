@@ -190,7 +190,7 @@ for go_url in page_lists:
 
     except TimeoutException:
         #like_button = driver.find_element(By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')
-        print(">  Like button is not found.")
+        print(">  Like button is not found. - TimeoutException")
     except ElementClickInterceptedException:
         print(">  ElementClickInterceptedException: Like button is not clickable.- ", get_elapsed())
     except UnexpectedAlertPresentException:
