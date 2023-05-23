@@ -149,6 +149,7 @@ for url in soup.find_all('url'):
 page_timeout = 30  # Set a timeout value in seconds
 action_timeout = 3  # Set event timeout
 no = 0
+page_title = ''
 
 for go_url in page_lists:
     no = no + 1
