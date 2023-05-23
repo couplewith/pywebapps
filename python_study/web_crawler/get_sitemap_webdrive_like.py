@@ -195,7 +195,7 @@ for go_url in page_lists:
         print(">  ElementClickInterceptedException: Like button is not clickable.- ", get_elapsed())
     except UnexpectedAlertPresentException:
         print(">  UnexpectedAlert Alert Text2: 유효하지 않은 요청입니다.- ", get_elapsed())
-        alert_handle2(driver,3)
+        alert_handle(driver,3)
     finally:
         driver.set_page_load_timeout(0)
         blog_links.append({'title': page_title, 'url': go_url, 'like': like_text, 'like_aft': like_text_aft})
