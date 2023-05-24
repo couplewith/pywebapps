@@ -76,20 +76,23 @@ def get_elapsed():
     return " > Elapsed: {:.2f} seconds".format(elapsed_time)
 
 
-def alert_handle(driver, accept=True, timeout=3):
+def alert_handle(driver, accept=True, timeout=20):
     try:
-        print(" > alert_handle: - ", get_elapsed())
+        print(" def> alert_handle: - ", get_elapsed())
         driver.implicitly_wait(timeout)
+        print(" def> alert_handle:aft", get_elapsed())
         alert = Alert(driver)
         alert_text = alert.text
         if (accept == True):
+            print(" def> alert_handle: alert.accept()")
             alert.accept()
-            print(" > alert_handle: alert.accept()")
         else:
+            print(" def> alert_handle: alert.dismiss()")
             alert.dismiss()
-            print(" > alert_handle: alert.dismiss()")
+
     except Exception as err:
-        print(f"> alert_handle {err=}, {type(err)=}")
+        print(f" def> alert_handle {err=}, {type(err)=}")
+        alert_handle2(driver, timeout)
         pass
 
 def alert_handle2(driver, timeout=3):
@@ -181,7 +184,7 @@ for go_url in page_lists:
         #driver.implicitly_wait(3)
         #time.sleep(3)
 
-        alert_handle(driver)
+        alert_handle(driver, True, 20)
         print(" > after alert_handle - ", get_elapsed())
         # alert except : UnexpectedAlertPresentException
 
@@ -195,8 +198,8 @@ for go_url in page_lists:
     except ElementClickInterceptedException:
         print(">  ElementClickInterceptedException: Like button is not clickable.- ", get_elapsed())
     except UnexpectedAlertPresentException:
-        print(">  UnexpectedAlert Alert Text2: 유효하지 않은 요청입니다.- ", get_elapsed())
-        alert_handle(driver,3)
+        print(">  UnexpectedAlertPresentException Alert: 유효하지 않은 요청입니다.- ", get_elapsed())
+        alert_handle(driver,True, 20)
     finally:
         driver.set_page_load_timeout(0)
         blog_links.append({'title': page_title, 'url': go_url, 'like': like_text, 'like_aft': like_text_aft})
