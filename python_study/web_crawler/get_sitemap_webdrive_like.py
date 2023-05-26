@@ -76,7 +76,7 @@ def get_elapsed():
     return " > Elapsed: {:.2f} seconds".format(elapsed_time)
 
 
-def alert_handle(driver, accept=True, timeout=20):
+def alert_handle(driver, accept=True, timeout=5):
     try:
         print(" def> alert_handle: - ", get_elapsed())
         driver.implicitly_wait(timeout)
@@ -95,26 +95,31 @@ def alert_handle(driver, accept=True, timeout=20):
         alert_handle2(driver, timeout)
         pass
 
-def alert_handle2(driver, timeout=3):
+def alert_handle2(driver, timeout=5):
     # alert handle  deprecated
+    try:
+        time.sleep(2)
+        print(" > alert_handle2: - ", get_elapsed())
+        driver.implicitly_wait(timeout)
 
-    print(" > alert_handle2: - ", get_elapsed())
-    driver.implicitly_wait(timeout)
+        # Check if an alert is present
+        alert_present = EC.alert_is_present()
 
-    # Check if an alert is present
-    alert_present = EC.alert_is_present()
-
-    if alert_present:
-        print(" > alert_handle2: Alert window is present")
-        alert = driver.switch_to.alert()
-        alert.accept()
-        print(" > alert.dismiss - ", get_elapsed())
-    else:
-        print(" > alert_handle2:  Alert window is not present")
-        actions = ActionChains(driver)
-        # Simulate pressing the Escape key
-        actions.send_keys(Keys.ESCAPE).perform()
-        print(" > alert_handle2: send escape key - ", get_elapsed())
+        if alert_present:
+            print(" > alert_handle2: Alert window is present ", get_elapsed())
+            alert = driver.switch_to.alert()
+            alert.dismiss()
+            #alert.accept()
+            print(" > alert.dismiss - ", get_elapsed())
+        else:
+            print(" > alert_handle2:  Alert window is not present")
+            actions = ActionChains(driver)
+            # Simulate pressing the Escape key
+            actions.send_keys(Keys.ESCAPE).perform()
+            print(" > alert_handle2: send escape key - ", get_elapsed())
+    except Exception as err:
+        print(f" def> alert_handle2 {err=}, {type(err)=}")
+        pass
 
 
 ###################################################################
@@ -161,7 +166,7 @@ for go_url in page_lists:
 
     try:
         driver.get(go_url)
-        driver.implicitly_wait(3)  # default 0 seconds : implicitly_wait
+        driver.implicitly_wait(5)  # default 0 seconds : implicitly_wait
 
         # scroll to the bottom of the page
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -184,7 +189,7 @@ for go_url in page_lists:
         #driver.implicitly_wait(3)
         #time.sleep(3)
 
-        alert_handle(driver, True, 20)
+        alert_handle(driver, True, 5)
         print(" > after alert_handle - ", get_elapsed())
         # alert except : UnexpectedAlertPresentException
 
@@ -199,7 +204,7 @@ for go_url in page_lists:
         print(">  ElementClickInterceptedException: Like button is not clickable.- ", get_elapsed())
     except UnexpectedAlertPresentException:
         print(">  UnexpectedAlertPresentException Alert: 유효하지 않은 요청입니다.- ", get_elapsed())
-        alert_handle(driver,True, 20)
+        alert_handle(driver,True, 10)
     finally:
         driver.set_page_load_timeout(0)
         blog_links.append({'title': page_title, 'url': go_url, 'like': like_text, 'like_aft': like_text_aft})
