@@ -32,7 +32,7 @@ def set_driver(browser, mode):
             options.add_argument('--disable-logging')
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-gpu')
-
+        options.add_argument("--incognito")   #secret mode
         options.add_argument('--ignore-certificate-errors')
         # options.add_argument("--disable-notifications"); # < old version 50.x
         # > new version 50.x
@@ -45,6 +45,7 @@ def set_driver(browser, mode):
         if ui_mode != 1:
             options.headless = True # run Firefox in headless mode (without a UI)
         options.accept_insecure_certs = True
+
         options.set_preference("general.useragent.override", user_agent)
         options.set_preference("dom.webnotifications.serviceworker.enabled", False);
         options.set_preference("dom.webnotifications.enabled", False);
@@ -60,6 +61,7 @@ def set_driver(browser, mode):
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-gpu')
 
+        options.add_argument("--incognito")  # secret mode
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--disable-notifications");
         options.add_experimental_option("prefs", {"profile.default_content_setting_values.notifications": 1})
@@ -76,7 +78,7 @@ def get_elapsed():
     return " > Elapsed: {:.2f} seconds".format(elapsed_time)
 
 
-def alert_handle(driver, accept=True, timeout=3):
+def alert_handle(driver, accept=True, timeout=5):
     try:
         print(" > alert_handle: - ", get_elapsed())
         driver.implicitly_wait(timeout)
@@ -92,14 +94,15 @@ def alert_handle(driver, accept=True, timeout=3):
         print(f"> alert_handle {err=}, {type(err)=}")
         pass
 
-def alert_handle2(driver, timeout=3):
+def alert_handle2(driver, timeout=5):
     # alert handle  deprecated
 
     print(" > alert_handle2: - ", get_elapsed())
     driver.implicitly_wait(timeout)
 
     # Check if an alert is present
-    alert_present = EC.alert_is_present()
+    #alert_present = EC.alert_is_present()
+    alert_present = WebDriverWait(driver, timeout).until(EC.alert_is_present())
 
     if alert_present:
         print(" > alert_handle2: Alert window is present")
@@ -115,37 +118,40 @@ def alert_handle2(driver, timeout=3):
 
 
 ###################################################################
-ui_mode = 1   # 1 : with browser UI,  other: without browser UI
 
-sitemap_url = "https://couplewith.tistory.com/sitemap.xml"
+# 1. listing web pages with sitemap.xml  #####################
+sitemap_urls = ["https://sweeting.tistory.com/sitemap.xml","https://couplewith.tistory.com/sitemap.xml"]
 
-driver = set_driver("edge", ui_mode)
-
-# get sitemap.xml for web listing
-response = requests.get(sitemap_url, verify=False)
-soup = BeautifulSoup(response.content, 'xml')
 blog_links = []
-
-action_timeout = 4
 page_lists = []
-
 pattern = r'com/[0-9]{1,3}'
 #pattern = r'com/42'
 
-for url in soup.find_all('url'):
-    loc_tag = url.find('loc')
-    if loc_tag is None:
-        print(" > Skipped ~ Tag continue - ", url)
-        continue
-    url_str = loc_tag.text
-    matched = re.search(pattern, url_str)
-    if not matched:
-        print(" > Skipped ~ continue - ", url_str)
-        continue
+# get sitemap.xml for web listing
+for sitemap_url in sitemap_urls:
+    response = requests.get(sitemap_url, verify=False)
+    soup = BeautifulSoup(response.content, 'xml')
 
-    page_url = url.findNext('loc').text
-    page_lists.append(page_url)
+    for url in soup.find_all('url'):
+        loc_tag = url.find('loc')
+        if loc_tag is None:
+            print(" > Skipped ~ Tag continue - ", url)
+            continue
+        url_str = loc_tag.text
+        matched = re.search(pattern, url_str)
+        if not matched:
+            print(" > Skipped ~ continue - ", url_str)
+            continue
 
+        page_url = url.findNext('loc').text
+        page_lists.append(page_url)
+
+# 2. Search Web pages  #####################
+# selenium page Webdriver
+ui_mode = 1   # 1 : with browser UI,  other: without browser UI
+driver = set_driver("edge", ui_mode)
+#driver = set_driver("chrome", ui_mode)
+action_timeout = 4
 page_timeout = 30  # Set a timeout value in seconds
 action_timeout = 3  # Set event timeout
 no = 0
@@ -157,7 +163,7 @@ for go_url in page_lists:
 
     try:
         driver.get(go_url)
-        driver.implicitly_wait(3)  # default 0 seconds : implicitly_wait
+        driver.implicitly_wait(5)  # default 0 seconds : implicitly_wait
 
         # scroll to the bottom of the page
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -177,8 +183,7 @@ for go_url in page_lists:
         like_button.click()
         print(" > after click holding - ", get_elapsed())
 
-        #driver.implicitly_wait(3)
-        #time.sleep(3)
+        time.sleep(2)
 
         alert_handle(driver)
         print(" > after alert_handle - ", get_elapsed())
@@ -195,7 +200,7 @@ for go_url in page_lists:
         print(">  ElementClickInterceptedException: Like button is not clickable.- ", get_elapsed())
     except UnexpectedAlertPresentException:
         print(">  UnexpectedAlert Alert Text2: 유효하지 않은 요청입니다.- ", get_elapsed())
-        alert_handle2(driver,3)
+        alert_handle2(driver,5)
     finally:
         driver.set_page_load_timeout(0)
         blog_links.append({'title': page_title, 'url': go_url, 'like': like_text, 'like_aft': like_text_aft})
