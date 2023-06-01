@@ -175,23 +175,23 @@ action_timeout = 3  # Set event timeout
 no = 0
 page_title = ''
 
-
 # 2. Search Web pages  #####################
 for go_url in page_lists:
     no = no + 1
     start_time = time.time() #init elapsed time
     driver.set_page_load_timeout(page_timeout)
+    driver.implicitly_wait(5)  # default 0 seconds : implicitly_wait
+    like_text = ''
+    like_text_aft = ''
 
     try:
         driver.get(go_url)
-        driver.implicitly_wait(5)  # default 0 seconds : implicitly_wait
 
         # scroll to the bottom of the page
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         page_soup = BeautifulSoup(driver.page_source, 'html.parser')
         page_title = page_soup.title.text
-        like_text = ''
-        like_text_aft = ''
+
 
         print(no, page_title, go_url)
 
@@ -204,8 +204,7 @@ for go_url in page_lists:
         like_button.click()
         print(" > after click holding - ", get_elapsed())
 
-        #driver.implicitly_wait(3)
-        #time.sleep(3)
+        time.sleep(1)
 
         alert_handle(driver, True, 5)
         print(" > after alert_handle - ", get_elapsed())
