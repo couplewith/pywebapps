@@ -33,6 +33,7 @@ def set_driver(browser, mode):
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-gpu')
 
+        options.add_argument("--incognito")  # secret mode
         options.add_argument('--ignore-certificate-errors')
         # options.add_argument("--disable-notifications"); # < old version 50.x
         # > new version 50.x
@@ -60,6 +61,7 @@ def set_driver(browser, mode):
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-gpu')
 
+        options.add_argument("--incognito")  # secret mode
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--disable-notifications");
         options.add_experimental_option("prefs", {"profile.default_content_setting_values.notifications": 1})
@@ -122,43 +124,59 @@ def alert_handle2(driver, timeout=5):
         pass
 
 
+
+
 ###################################################################
 ui_mode = 1   # 1 : with browser UI,  other: without browser UI
 
-sitemap_url = "https://couplewith.tistory.com/sitemap.xml"
-
-driver = set_driver("edge", ui_mode)
 
 # get sitemap.xml for web listing
-response = requests.get(sitemap_url, verify=False)
-soup = BeautifulSoup(response.content, 'xml')
-blog_links = []
+sitemap_urls = ["https://sweeting.tistory.com/sitemap.xml","https://couplewith.tistory.com/sitemap.xml"]
 
-action_timeout = 4
+blog_links = []
 page_lists = []
 
 pattern = r'com/[0-9]{1,3}'
 #pattern = r'com/42'
 
-for url in soup.find_all('url'):
-    loc_tag = url.find('loc')
-    if loc_tag is None:
-        print(" > Skipped ~ Tag continue - ", url)
-        continue
-    url_str = loc_tag.text
-    matched = re.search(pattern, url_str)
-    if not matched:
-        print(" > Skipped ~ continue - ", url_str)
-        continue
+# 1. Get webpage url list #####################
+# get sitemap.xml for web listing
+for sitemap_url in sitemap_urls:
 
-    page_url = url.findNext('loc').text
-    page_lists.append(page_url)
+    response = requests.get(sitemap_url, verify=False)
+    soup = BeautifulSoup(response.content, 'xml')
 
+    for url in soup.find_all('url'):
+        loc_tag = url.find('loc')
+        if loc_tag is None:
+            print(" > Skipped ~ Tag continue - ", url)
+            continue
+        url_str = loc_tag.text
+        matched = re.search(pattern, url_str)
+        if not matched:
+            print(" > Skipped ~ continue - ", url_str)
+            continue
+
+        page_url = url.findNext('loc').text
+        page_lists.append(page_url)
+
+
+
+# 2. Search Web pages  #####################
+
+# selenium page Webdriver
+ui_mode = 1   # 1 : with browser UI,  other: without browser UI
+driver = set_driver("edge", ui_mode)
+#driver = set_driver("chrome", ui_mode)
+
+action_timeout = 4
 page_timeout = 30  # Set a timeout value in seconds
 action_timeout = 3  # Set event timeout
 no = 0
 page_title = ''
 
+
+# 2. Search Web pages  #####################
 for go_url in page_lists:
     no = no + 1
     start_time = time.time() #init elapsed time
