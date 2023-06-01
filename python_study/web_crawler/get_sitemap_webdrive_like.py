@@ -100,7 +100,7 @@ def alert_handle(driver, accept=True, timeout=5):
 def alert_handle2(driver, timeout=5):
     # alert handle  deprecated
     try:
-        time.sleep(2)
+
         print(" > alert_handle2: - ", get_elapsed())
         driver.implicitly_wait(timeout)
 
@@ -196,7 +196,9 @@ for go_url in page_lists:
         print(no, page_title, go_url)
 
         print(" > check element_to_be_clickable  ")
-        like_button = WebDriverWait(driver, action_timeout).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
+        # button = driver.find_element(By.CSS_SELECTOR, "button.btn_post.uoc-icon")
+        # like_button = WebDriverWait(driver, action_timeout).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
+        like_button = WebDriverWait(driver, action_timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button.btn_post.uoc-icon')))
         like_text = like_button.text.strip()
         like_text_aft = like_text
 
