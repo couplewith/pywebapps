@@ -71,8 +71,10 @@ def set_driver(browser, mode):
     return driver
 
 start_time = time.time()
-def get_elapsed():
+def get_elapsed(init=0):
     global start_time  # global variable
+    if init == 1 or start_time is None :
+        start_time = time.time()
     end_time = time.time()
     elapsed_time = end_time - start_time
     return " > Elapsed: {:.2f} seconds".format(elapsed_time)
@@ -169,8 +171,7 @@ ui_mode = 1   # 1 : with browser UI,  other: without browser UI
 driver = set_driver("edge", ui_mode)
 #driver = set_driver("chrome", ui_mode)
 
-action_timeout = 4
-page_timeout = 30  # Set a timeout value in seconds
+page_timeout = 15  # Set a timeout value in seconds
 action_timeout = 3  # Set event timeout
 no = 0
 page_title = ''
@@ -178,7 +179,7 @@ page_title = ''
 # 2. Search Web pages  #####################
 for go_url in page_lists:
     no = no + 1
-    start_time = time.time() #init elapsed time
+    get_elapsed(init=1) #init elapsed time
     driver.set_page_load_timeout(page_timeout)
     driver.implicitly_wait(5)  # default 0 seconds : implicitly_wait
     like_text = ''
