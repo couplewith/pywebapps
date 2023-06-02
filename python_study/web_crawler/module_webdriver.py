@@ -74,7 +74,7 @@ def set_driver(browser, ui_mode=1):
 start_time = time.time()
 def get_elapsed(init=0):
     global start_time  # global variable
-    if init == 1 or start_time ==None :
+    if init == 1 or start_time is None :
         start_time = time.time()
     end_time = time.time()
     elapsed_time = end_time - start_time
