@@ -2,6 +2,7 @@
 import os  # for checking file existence
 import sys  # for handling errors
 import re
+import requests
 import urllib.request
 import http.client
 from io import StringIO
