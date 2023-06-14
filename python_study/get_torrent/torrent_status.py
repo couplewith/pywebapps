@@ -98,6 +98,7 @@ def list_to_html_data(new_url_list):
     html_buffer = StringIO()
     html_buffer.write('<html><head><title>torrent update</title></head>\n')
     html_buffer.write('<body>\n')
+    html_buffer.write('\n')
     html_buffer.write('<h2 style="text-align: left;" data-ke-size="size26">')
     html_buffer.write('<b>주요 토렌트 순위 {} updated</b><br>'.format(date_time_str))
     html_buffer.write('</h2>\n')
@@ -116,6 +117,7 @@ def list_to_html_data(new_url_list):
         if(cnt % 5 == 4) :
             html_buffer.write('<br/>\n')
         cnt = cnt+1
+    html_buffer.write('\n')
     html_buffer.write('</body></html>')
     return html_buffer
 

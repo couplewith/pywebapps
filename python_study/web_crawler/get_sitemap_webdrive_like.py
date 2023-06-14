@@ -61,7 +61,7 @@ def set_driver(browser, mode):
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-gpu')
 
-        options.add_argument("--incognito")  # secret mode
+        #options.add_argument("--incognito")  # secret mode
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--disable-notifications");
         options.add_experimental_option("prefs", {"profile.default_content_setting_values.notifications": 1})
