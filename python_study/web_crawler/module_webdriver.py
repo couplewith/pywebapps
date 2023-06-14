@@ -114,13 +114,16 @@ def alert_handle(driver, timeout=5, accept=True):
             print(" > alert.dismiss - ", get_elapsed())
         else:
             print(" > alert_handle:  Alert window is not present")
-            actions = ActionChains(driver)
-            # Simulate pressing the Escape key
-            actions.send_keys(Keys.ESCAPE).perform()
-            print(" > alert_handle: send escape key - ", get_elapsed())
+            action_escape(driver)
     except Exception as err:
         print(f" def> alert_handle {err=}, {type(err)=}")
         alert_handle2(driver, timeout)
         pass
     finally:
         print(f" > alert_handle : done !! {alert_present=}, {type(alert_present)=}", get_elapsed())
+
+def action_escape(driver):
+    # Simulate pressing the Escape key
+    actions = ActionChains(driver)
+    actions.send_keys(Keys.ESCAPE).perform()
+    print(" > action_escape: send escape key - ", get_elapsed())
