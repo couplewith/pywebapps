@@ -1,160 +1,89 @@
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, \
     UnexpectedAlertPresentException
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.alert import Alert
-# from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-import requests
-import re
-import time
-
-import urllib3
-from bs4 import BeautifulSoup
 
 import module_webdriver as WD
-urllib3.disable_warnings()
+import time
 
 
-###################################################################
-ui_mode = 1   # 1 : with browser UI,  other: without browser UI
-
-
-# get sitemap.xml for web listing
-sitemap_urls = ["https://sweeting.tistory.com/sitemap.xml","https://couplewith.tistory.com/sitemap.xml"]
-
-blog_links = []
-page_lists = []
-
-pattern = r'com/[0-9]{1,3}'
-#pattern = r'com/42'
-
-# 1. Get webpage url list #####################
-# get sitemap.xml for web listing
-for sitemap_url in sitemap_urls:
-
-    response = requests.get(sitemap_url, verify=False)
-    soup = BeautifulSoup(response.content, 'xml')
-
-    for url in soup.find_all('url'):
-        loc_tag = url.find('loc')
-        if loc_tag is None:
-            print(" > Skipped ~ Tag continue - ", url)
-            continue
-        url_str = loc_tag.text
-        matched = re.search(pattern, url_str)
-        if not matched:
-            print(" > Skipped ~ continue - ", url_str)
-            continue
-
-        page_url = url.findNext('loc').text
-        page_lists.append(page_url)
-
-
-
-# 2. Search Web pages  #####################
+# driver_path = '/path/to/chromedriver'
+# driver = webdriver.Chrome(executable_path=driver_path)
 
 # selenium page Webdriver
 ui_mode = 1   # 1 : with browser UI,  other: without browser UI
-driver = WD.set_driver("edge", ui_mode)
-#driver = set_driver("chrome", ui_mode)
-
-action_timeout = 4
-page_timeout = 10  # Set a timeout value in seconds
-action_timeout = 3  # Set event timeout
-no = 0
-page_title = ''
-
-# 2. Search Web pages  #####################
-for go_url in page_lists:
-    no = no + 1
-    WD.get_elapsed(init=1)# init elapsed time
-
-    driver.set_page_load_timeout(page_timeout)
-    driver.implicitly_wait(5)  # default 0 seconds : implicitly_wait
-    like_text = ''
-    like_text_aft = ''
-
-    try:
-        driver.get(go_url)
-
-        # scroll to the bottom of the page
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        page_soup = BeautifulSoup(driver.page_source, 'html.parser')
-        page_title = page_soup.title.text
+#driver = WD.set_driver("edge", ui_mode)
+driver = WD.set_driver("chrome", ui_mode)
 
 
-        print(no, page_title, go_url)
+def SearchByhome(key, site=''):
+    # 검색 엔진 사이트 접속
+    driver.get('https://www.google.com')
+    # 검색어 입력
+    #search_input = driver.find_element_by_name('input')  # 검색어 입력 필드의 name 속성을 확인하여 변경 가능
+    #search_input = driver.find_element_by_css_selector('input[name="q"]')
+    search_input = driver.find_element(By.CSS_SELECTOR, 'input[name="q"]')
+    # 검색 수행
+    search_input.send_keys(Keys.RETURN)
 
-        print(" > check element_to_be_clickable  ")
-        # button = driver.find_element(By.CSS_SELECTOR, "button.btn_post.uoc-icon")
-        # like_button = WebDriverWait(driver, action_timeout).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.uoc-icon')))
-        like_button = WebDriverWait(driver, action_timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button.btn_post.uoc-icon')))
-        like_text = like_button.text.strip()
-        like_text_aft = like_text
-
-        try:
-            # Disable alerts temporarily
-            driver.switch_to.alert.accept()
-
-        except NoAlertPresentException:
-            pass  # No alert window present, continue with the code
-
-        like_button.click()
-
-        print(" > after click holding - ", WD.get_elapsed())
-
-        time.sleep(1)
-
-        WD.action_escape(driver)
-        WD.alert_handle(driver, 5, True)
-        print(" > after alert_handle - ", WD.get_elapsed())
-        # alert except : UnexpectedAlertPresentException
-
-        like_button_aft = WebDriverWait(driver, action_timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')) )
-        like_text_aft = like_button_aft.text.strip()
-        print(">> catch new Liked ---->", like_text, like_text_aft)
-
-    except TimeoutException:
-        #like_button = driver.find_element(By.CSS_SELECTOR, 'div.uoc-icon.empathy_up_without_ani.like_on')
-        print(">  Like button is not found. - TimeoutException")
-    except ElementClickInterceptedException:
-        print(">  ElementClickInterceptedException: Like button is not clickable.- ", WD.get_elapsed())
-    except UnexpectedAlertPresentException:
-        print(">  UnexpectedAlertPresentException Alert: 유효하지 않은 요청입니다.- ", WD.get_elapsed())
-        WD.alert_handle(driver, 5, True)
-    finally:
-        driver.set_page_load_timeout(0)
-        blog_links.append({'title': page_title, 'url': go_url, 'like': like_text, 'like_aft': like_text_aft})
-        print(">  finally done !! - ", no, like_text, like_text_aft, WD.get_elapsed())
-        continue
+def SearchByUrl(url):
+    driver.get(url)
 
 
+
+# --검색 결과 읽기-------------------------#
+def ShowSearchResults(driver, result_css):
+    # #rso > div:nth-child(1)
+
+    elements = []
+
+    # 검색 결과 링크 선택
+    result_css="#search > div > #rso > div:nth-child(1)"
+    for i in range(5):
+        element = driver.find_element(By.CSS_SELECTOR, f'#search > div > #rso > div:nth-child({i + 1}) a')
+        elements.append(element)
+
+        # 검색 결과 링크 선택
+        #elements[0] = driver.find_element(By.CSS_SELECTOR, '#search .g:nth-child(1) a') # 첫 번째 검색 결과를 선택합니다.
+
+
+        action = ActionChains(driver)
+
+        for item in elements :
+            # New Windows Open : 새창으로 열립니다.
+            action.key_down(Keys.SHIFT).click(item).key_up(Keys.SHIFT).perform()
+            print(" webdriver SHIFT windows open ",len(driver.window_handles) )
+            time.sleep(5)
+
+            # New Tab Open : 새탭으로 열립니다.
+            #action.key_down(Keys.CONTROL).click(item).key_up(Keys.CONTROL).perform()
+            #print( " webdriver CONTROL windows open ",len(driver.window_handles) )
+
+            #action.key_down(Keys.COMMAND).click(item).key_up(Keys.COMMAND).perform()
+            #action.key_down(Keys.SHIFT).key_down(Keys.CONTROL).click(item).key_up(Keys.CONTROL).key_up(Keys.SHIFT).perform()
+            #time.sleep(5)
+            print(" size of windows {}", len(driver.window_handles))
+            # 새 창으로 전환
+            driver.switch_to.window(driver.window_handles[1])
+
+            # 새 창 닫기
+            driver.close()
+
+            # 원래 창으로 전환
+            driver.switch_to.window(driver.window_handles[0])
+
+    time.sleep(10)
+# google
+KeyWords=["카페찾기", "당일여행", "대형베이커리", "베이커리카페", "주말여행"]
+url ="https://www.google.com/search?q=%EC%B9%B4%ED%8E%98%EC%B0%BE%EA%B8%B0+site:sweeting.tistory.com"
+result_css="#search > div > #rso > div:nth-child(1)"
+
+SearchByUrl(url)
+ShowSearchResults(driver, result_css)
+
+
+# 웹 드라이버 종료
 driver.quit()
-print(no, blog_links)
-
-if no > 1:
-    print(len(blog_links),blog_links[-1:])
-else:
-    print(len(blog_links), blog_links)
-
-
-# Usage :
-# python get_sitemap_webdrive_like.py
-# 1) cannot browser in PATH  :
-#  - First Execute your browser(edge,firefox...) on your desktop then beautifulsoup can access browser.
-#    if not it will occur error with "not found edge browser".
-# 2) Using WebDriverWait
-#  - "If the requested contents are not presented, driver.find_element will not find any matching element."
-#
-# 브라우저가 작동이 안될때 pycharm 터미널에 실행
-# D:\github\pywebapps\venv\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser edge --output json
-# Selenium Grid의 구성 요소 중 하나인 Selenium Standalone Server를 시작하는 데 사용됩니다.
-# 3) Alert 창 관련  https://couplewith.tistory.com/428
-#                  https://couplewith.tistory.com/427
-#                  https://couplewith.tistory.com/426
-#   - UnexpectedAlert Alert Text: 유효하지 않은 요청입니다.
-#   - Message: unexpected alert open: {Alert text : 유효하지 않은 요청입니다.}
