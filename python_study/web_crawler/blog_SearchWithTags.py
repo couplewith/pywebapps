@@ -87,3 +87,16 @@ ShowSearchResults(driver, result_css)
 
 # 웹 드라이버 종료
 driver.quit()
+
+
+
+#
+# New Tab Open : 새탭으로 열립니다.
+# action.key_down(Keys.CONTROL).click(item).key_up(Keys.CONTROL).perform()
+# print( " webdriver CONTROL windows open ",len(driver.window_handles) )
+
+
+# New Windows Open : 새창으로 열립니다.
+action.key_down(Keys.SHIFT).click(item).key_up(Keys.SHIFT).perform()
+print(" webdriver SHIFT windows open ", len(driver.window_handles))
+time.sleep(5)
