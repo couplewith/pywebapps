@@ -26,25 +26,20 @@ url_lists = []
 for keyword in key_words:
     encoded_keyword = url_encode(keyword)
     search_url = f"https://www.google.com/search?q={encoded_keyword}+site%3Asweeting.tistory.com&oq={encoded_keyword}+site%3Asweeting.tistory.com&sourceid=chrome&ie=UTF-8"
-    driver.switch_to.window(tabs[1])
+    driver.switch_to.window(driver.window_handles[0])
     driver.get(search_url)
     print(search_url)
 
     try:
         # 검색 결과 링크 가져오기
         # #rso > div:nth-child(1) > div > div > div > div > a
-        # //*[@id="rso"]/div[1]/div/div/div[1]/div/a
-        # //*[@id="rso"]/div/div/div/div[1]/div/a
-        #links = driver.find_elements(By.CSS_SELECTOR, f'#search > div > #rso > div:nth-child(1) > div > div > div > div > a')
-        # links = driver.find_elements_by_xpath('//div/div/a')
-        # links = driver.find_elements_by_xpath('//*[@id="rso"]/div//div[1]/div/a')
         links = driver.find_elements(By.XPATH, '//*[@id="rso"]/div//div[1]/div/a')
         print (len(links))
 
         for link in links:
             url = link.get_attribute('href')
             attr = link.get_attribute('text')
-            url_lists.append({ "url": url, "attr" : attr})
+            url_lists.append({"url": url, "attr": attr})
 
 
     except NoSuchElementException:
@@ -56,11 +51,14 @@ idx = 0
 
 for url in url_lists:
     print(url)
+    idx = idx + 1
 
-    if ( idx / 2 ):
-         driver.switch_to.window(tabs[1])
+    if ( (idx % 2 ) == 1):
+        driver.switch_to.window(driver.window_handles[1])
+        print(idx, 1)
     else:
-         driver.switch_to.window(tabs[2])
+        driver.switch_to.window(driver.window_handles[2])
+        print(idx, 2)
     driver.get(url['url'])
 
 # WebDriver 종료
