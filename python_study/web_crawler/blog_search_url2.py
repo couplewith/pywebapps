@@ -9,7 +9,7 @@ def url_encode(text):
     return encoded_text
 
 # 테스트
-key_words = ['경기도근처카페', '경기도가볼만한곳', '베이커리카페', '당일여행','카페']
+key_words=['경기도근처카페', '경기도가볼만한곳',"카페찾기", "당일여행", "추천카페", "멋진카페", "대형베이커리", "베이커리카페", "주말여행"]
 
 # WebDriver 초기화
 driver = webdriver.Chrome()  # chromedriver 경로를 지정해야 합니다.
