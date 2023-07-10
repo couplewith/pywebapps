@@ -1,9 +1,20 @@
-import requests
 from selenium import webdriver
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, \
+    UnexpectedAlertPresentException
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.alert import Alert
+# from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from bs4 import BeautifulSoup
-from time import sleep
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+import requests
+import re
+import time
 
+import urllib3
+from bs4 import BeautifulSoup
+urllib3.disable_warnings()
 
 
 def set_driver(browser, mode):

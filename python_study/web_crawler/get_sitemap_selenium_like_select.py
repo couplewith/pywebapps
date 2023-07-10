@@ -115,7 +115,7 @@ for url in soup.find_all('url'):
         alert.dismiss()
     finally:
         no = no + 1
-        sleep(2)  # delay for next page
+        sleep(1)  # delay for next page
 
 
 driver.quit()
