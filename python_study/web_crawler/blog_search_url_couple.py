@@ -9,7 +9,7 @@ def url_encode(text):
     return encoded_text
 
 # 테스트
-key_words=['경기도근처카페', '경기도가볼만한곳',"카페찾기", "당일여행", "추천카페", "멋진카페", "대형 베이커리", "베이커리 카페", "주말여행"]
+key_words=['파일복구','Rust 프로그래밍', '셀스크립트 작성", "빅데이터", "인공지능", "IT 트렌드", "Trends", "디지털 트렌스포메이션", "Digital Transformation", "Data mesh", "셀레니움", "파이썬", "SQL", "SQLite"]
 
 # WebDriver 초기화
 driver = webdriver.Chrome()  # chromedriver 경로를 지정해야 합니다.
@@ -25,7 +25,7 @@ time.sleep(2)
 url_lists = []
 for keyword in key_words:
     encoded_keyword = url_encode(keyword)
-    search_url = f"https://www.google.com/search?q={encoded_keyword}+site%3Asweeting.tistory.com&oq={encoded_keyword}+site%3Asweeting.tistory.com&sourceid=chrome&ie=UTF-8"
+    search_url = f"https://www.google.com/search?q={encoded_keyword}+site%3Acouplewith.tistory.com&oq={encoded_keyword}+site%3Acouplewith.tistory.com&sourceid=chrome&ie=UTF-8"
     driver.switch_to.window(driver.window_handles[0])
     driver.get(search_url)
     print(search_url)

@@ -1,7 +1,18 @@
 [기술블로그]
 ​
 ​
+
+⊙데브시스터즈 : https://tech.devsisters.com/
+특별한 카테고리나 검색 기능은 없지만, 데브시스터즈의 GitHub 링크가 있어요.
+
+⊙맘시터 : https://tech.mfort.co.kr/
+프로그래머스 개발자 탐이 추천한 맘시터 블로그의 <개발자 온보딩 프로세스>
+
+⊙백준 : https://startlink.blog/author/baekjoon/ 
+프로그래머스 개발자 록이 추천한 백준 블로그의 <서버 인프라 구축과정>
+
 🇰🇷 국내 기업 블로그 37곳
+
 ⊙강남언니 : https://blog.gangnamunni.com/blog/tech/
 강남 언니 공식 블로그 내에 테크 블로그가 있어요. Android, iOS, Server, Web, Tool로 구성되어 있어 분야별로 글을 볼 수 있습니다. ETC 카테고리에서는 일하는 방법과 조직 문화도 찾아볼 수 있어요.
 
@@ -18,17 +29,6 @@
 당근마켓을 만드는 사람들의 이야기, 당근마켓 팀 블로그. 머신러닝, 엔지니어링, 데이터, 검색으로 카테고리가 구분되어 있어요. 추가로 당근마켓 브랜드/마케팅에 관련된 글도 함께 볼 수 있습니다.
 
 
-⊙데브시스터즈 : https://tech.devsisters.com/
-특별한 카테고리나 검색 기능은 없지만, 데브시스터즈의 GitHub 링크가 있어요.
-
-⊙맘시터 : https://tech.mfort.co.kr/
-
-
-프로그래머스 개발자 탐이 추천한 맘시터 블로그의 <개발자 온보딩 프로세스>
-⊙백준 : https://startlink.blog/author/baekjoon/ 
-
-
-프로그래머스 개발자 록이 추천한 백준 블로그의 <서버 인프라 구축과정>
 ⊙뱅크샐러드 : https://blog.banksalad.com/tech/
 더 나은 내가 되는 곳, 뱅크샐러드 기술 블로그. 카테고리는 없지만 글마다 태그가 잘 붙어 있어요. 검색 기능이 있어서 안드로이드부터 조직 문화까지 살펴볼 수 있습니다. 
 
@@ -42,7 +42,7 @@
 프론트엔드, 서버, 모바일앱, 데이터/AI, QA, 개발 문화로 카테고리가 나누어져 있습니다. 회고 글과 기술 사례 글을 두루두루 읽을 수 있어요.
 
 ⊙직방 : https://medium.com/zigbang
-프론트엔드와 백엔드로 카테고리가 구분되어 있어요. 프론트엔드 보단 백엔드 글이 자주 업데이트돼요. 
+프론트엔드와 백엔드로 카테고리가 구분되어 있습니다. 프론트엔드 보단 백엔드 글이 자주 업데이트 됩니다.
 
 ⊙지마켓 : https://dev.gmarket.com/
 검색 기능은 있지만 따로 카테고리 구분은 없어요. 그래도 일주일에 글이 하나씩은 꾸준히 올라오고 있습니다.
@@ -93,18 +93,20 @@ AI, DATA, INFRASTRUCTURE, MOBILE로 카테고리가 나누어져 있어요. 대�
 
 
 프로그래머스 개발자 그린이 추천한 하이퍼커낵트 블로그 <WebRTC 스트리밍을 포함한 E2C 테스트 구현>
-⊙LINE : https://engineering.linecorp.com/ko/
-LINE Engineering은 LINE의 여러 기술 조직 활동과 문화, 개발자의 생각과 성과를 공개하는 웹사이트입니다. 라인은 내부 프로젝트를 오픈 소스로 공개하고 있고 관련하여 Github 링크도 있어요.
+⊙LINE DEV : https://engineering.linecorp.com/ko/
+LINE의 여러 기술조직 활동과 문화,개발자의 생각과 성과를 공개하는 웹사이트입니다. 라인은 내부 프로젝트를 오픈 소스로 공개하고 있고 관련하여 Github 링크도 있어요.
 
 ⊙NAVER : https://d2.naver.com/helloworld
 네이버 개발자들이 직접 정리한 실전 개발 경험과 지식이 담긴 블로그입니다. 
+
+⊙WACHA :https://medium.com/watcha
+와차의 개발자와 마케팅등 대한 블로그입니다. 문화, 서버/인프라, 프로그래밍, 머시러닝, 브랜드/마케팅 카테고리가 나누어져 있어요. 
 
 ⊙MUSINSA : https://medium.com/musinsa-tech
 무신사의 기술과 개발 문화 이야기를 담고 있는 기술 블로그입니다. 서버/인프라, 프로그래밍, 데이터로 카테고리가 나누어져 있어요. 
 
 ⊙RIDI : https://www.ridicorp.com/story-category/tech-blog/
 리디 스토리 안에 테크 블로그가 포함되어 있어요.
-👉 RIDI 개발자를 뽑고 있어요. 채용 공고를 바로 확인해 보세요.
 
 ⊙SK : https://engineering-skcc.github.io/
 SK(주) C&C의 TECH BLOG입니다. Cloud Native Application 개발을 위한 CNAPS 방법론과 SW Development Modernization 관련 기술과 노하우가 담긴 포스팅을 확인하세요.
@@ -114,7 +116,6 @@ Security, data, design, dev, mobility, product, QA로 카테고리가 나누어�
 
 ⊙Spoqa : https://spoqa.github.io/ 
 카테고리 구분은 없지만 깃헙링크가 따로 있어요.
-👉 Spoqa 개발자를 뽑고 있어요. 채용 공고를 바로 확인해 보세요. 
 
 ⊙Tiving : https://medium.com/tving-team
 Tech 뿐만 아니라, 서비스, 브랜딩, 컬쳐 등 다양하게 다루고 있어요.
@@ -131,37 +132,38 @@ Tech 뿐만 아니라, 서비스, 브랜딩, 컬쳐 등 다양하게 다루고 �
 
 해외 기업 블로그
 
-⊙Amazon Alexa : https://developer.amazon.com/en-US/blogs/alexa
+□ Amazon Alexa : https://developer.amazon.com/en-US/blogs/alexa
 
-⊙Dropbox : https://dropbox.tech/developers
+□ Dropbox : https://dropbox.tech/developers
 
-⊙ebay : https://tech.ebayinc.com/ 
+□ ebay : https://tech.ebayinc.com/ 
 
-⊙Github : https://github.blog/
+□ Github : https://github.blog/
 
-⊙Google : https://developers.googleblog.com/ 
+□ Google : https://developers.googleblog.com/ 
 
-⊙Linked in : https://engineering.linkedin.com/blog 
+□ Linked in : https://engineering.linkedin.com/blog 
 
-⊙Meta : https://engineering.fb.com/ 
+□ Meta : https://engineering.fb.com/ 
 
-⊙Microsoft : https://techcommunity.microsoft.com/t5/custom/page/page-id/Blogs 
+□ Microsoft : https://techcommunity.microsoft.com/t5/custom/page/page-id/Blogs 
 
-⊙Netflix : https://netflixtechblog.com/
+□ Netflix : https://netflixtechblog.com/
+  - 개발자 인터뷰 내용, 넷플릭스 팀에서 의사 결정하는 과정, 설계 방법 등 다양한 콘텐츠를 꾸준히 업로드 하는 기술 블로그
+  
+□ PayPal : https://medium.com/paypal-tech 
 
-⊙PayPal : https://medium.com/paypal-tech 
+□ Pinterest : https://medium.com/@Pinterest_Engineering 
 
-⊙Pinterest : https://medium.com/@Pinterest_Engineering 
+□ Platfarm : https://medium.com/platfarm
 
-⊙Platfarm : https://medium.com/platfarm
+□ Slack : https://slack.engineering/  
 
-⊙Slack : https://slack.engineering/  
+□ Spotify : https://engineering.atspotify.com/ 
 
-⊙Spotify : https://engineering.atspotify.com/ 
+□ Twitter : https://blog.twitter.com/engineering/en_us
 
-⊙Twitter : https://blog.twitter.com/engineering/en_us
-
-⊙Zoom : https://medium.com/zoom-developer-blog 
+□ Zoom : https://medium.com/zoom-developer-blog 
 
  
 
@@ -175,7 +177,7 @@ Tech 뿐만 아니라, 서비스, 브랜딩, 컬쳐 등 다양하게 다루고 �
 
 IT 기술 블로그들의 최신 포스트를 한곳에서 보세요.
 
-techblogposts.com
+http://techblogposts.com
 
  
 
