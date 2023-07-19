@@ -9,7 +9,7 @@ def url_encode(text):
     return encoded_text
 
 # 테스트
-key_words=['파일복구','Rust 프로그래밍', '셀스크립트 작성", "빅데이터", "인공지능", "IT 트렌드", "Trends", "디지털 트렌스포메이션", "Digital Transformation", "Data mesh", "셀레니움", "파이썬", "SQL", "SQLite"]
+key_words=["파일복구","Rust 프로그래밍", "셀스크립트 작성", "빅데이터", "인공지능", "IT 트렌드", "Trends", "디지털 트렌스포메이션", "Digital Transformation", "Data mesh", "셀레니움", "파이썬", "SQL", "SQLite"]
 
 # WebDriver 초기화
 driver = webdriver.Chrome()  # chromedriver 경로를 지정해야 합니다.
