@@ -15,7 +15,7 @@ key_words=["파일복구","Rust 프로그래밍", "셀스크립트 작성", "빅
 driver = webdriver.Chrome()  # chromedriver 경로를 지정해야 합니다.
 
 # 초기 윈도우를 2개 더 오픈 합니다.
-driver.execute_script('window.open("about:blank", "_blank");')git
+driver.execute_script('window.open("about:blank", "_blank");')
 
 driver.execute_script('window.open("about:blank", "_blank");')
 tabs = driver.window_handles
