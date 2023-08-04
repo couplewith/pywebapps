@@ -1,0 +1,53 @@
+ganache v7.9.0 (@ganache/cli: 0.10.0, @ganache/core: 0.10.0)
+Starting RPC server
+
+Available Accounts
+==================
+(0) 0x4aD3dCC9db693E08C55dd18a3E0c1779deB41C31 (1000 ETH)
+(1) 0x6B20e0EF3628b85Cd93c508C796aA12B0d42d0b6 (1000 ETH)
+(2) 0x88e201438515D7AABC6b594CB7c0C0a37409da51 (1000 ETH)
+(3) 0x711e3B8154DcCead3Dd4496da716e9eA3f3De9b0 (1000 ETH)
+(4) 0xa8573Ef7f74701e10f8018E4f546DEdee4297a00 (1000 ETH)
+(5) 0x1a5285852A69A54101Bf09351F8c783685F7E52c (1000 ETH)
+(6) 0xA0C95FB53c4835F052B9E533E76Cf98ed588a3CC (1000 ETH)
+(7) 0x77dc2682E7220EAEE58D51658B79227cCCb754e4 (1000 ETH)
+(8) 0xE4B29ED84785e978FAc86c349998592eFad25e93 (1000 ETH)
+(9) 0xa1fdbfEA98d89c8821d03053729DE090be3109a8 (1000 ETH)
+
+Private Keys
+==================
+(0) 0x1b4a0362daefac10e87293a2099029c2f9978821b493578d97325fd96f146387
+(1) 0x13e6bb5e8cd1d1589391206fa12ce5da18a29c288622b1d97fc6e84921ed06e8
+(2) 0x3c0d936130858046e1c1703bbb1d2cbdb48835bd795ab4425849938d47dd3dfe
+(3) 0x440408553d040bc91645d6095e5882dcd93101649160d8132cccc026e00b1e70
+(4) 0x4fe3743e6769cd601c0ea95b1962a5989303715f6a40c78d455dd369293a4eca
+(5) 0x0af30c0565e187733101ff7d95adefb880edf614b6fab252006b42ffe140551c
+(6) 0x26d3712405362da4fc466ebabf43bb68d9704f295d08e17d54348ceee31fca96
+(7) 0xd14d2ccda1276ba077930c39d9071c2506e267b48463bd49a66ece1c3db54e38
+(8) 0x4f2983b16ce99904559d1e9266c77a3aadfaf13b463196cbfd5a8d6da4939a50
+(9) 0xab0767739b5edb7dec040c56ac42202c1c5abaa888a608862748f4013fddd509
+
+HD Wallet
+==================
+Mnemonic:      include describe very lady crucial sauce abstract merit dish runway nerve fuel
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Default Gas Price
+==================
+2000000000
+
+BlockGas Limit
+==================
+30000000
+
+Call Gas Limit
+==================
+50000000
+
+Chain
+==================
+Hardfork: shanghai
+Id:       1337
+
+RPC Listening on 0.0.0.0:8545
+
