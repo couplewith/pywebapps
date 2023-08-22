@@ -77,7 +77,7 @@ def ShowSearchResults(driver, result_css):
 
     time.sleep(10)
 # google
-KeyWords=["카페찾기", "당일여행", "추천카페", "멋진카페", "대형베이커리", "베이커리카페", "주말여행"]
+KeyWords=["카페찾기", "경기도근처카페", "당일여행", "추천카페", "멋진카페", "대형베이커리", "베이커리카페", "주말여행"]
 url ="https://www.google.com/search?q=%EC%B9%B4%ED%8E%98%EC%B0%BE%EA%B8%B0+site:sweeting.tistory.com"
 result_css="#search > div > #rso > div:nth-child(1)"
 
