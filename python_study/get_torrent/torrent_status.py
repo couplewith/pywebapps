@@ -123,14 +123,14 @@ def list_to_html_data(new_url_list):
 
 
 def write_stringbuffer(buffer, filename='torrent_update.html'):
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding='utf-8') as f:
         f.write(buffer.getvalue())
     f.close()
 
 
 def write_listdata(listdata, filename='new_torrent_sites.txt'):
     cnt = 0
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding='utf-8') as f:
         for item in listdata:
             f.write(item + '\n')
             cnt = cnt+1
