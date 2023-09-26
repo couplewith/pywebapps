@@ -24,12 +24,12 @@ ui_mode = 1   # 1 : with browser UI,  other: without browser UI
 
 
 # get sitemap.xml for web listing
-sitemap_urls = ["https://sweeting.tistory.com/sitemap.xml","https://couplewith.tistory.com/sitemap.xml"]
+sitemap_urls = ["https://agilebus.blogspot.com/sitemap.xml","https://sweetlifecafe.blogspot.com/sitemap.xml"]
 
 blog_links = []
 page_lists = []
 
-pattern = r'com/[0-9]{1,3}'
+pattern = r'com/[0-9]{1,4}'
 #pattern = r'com/42'
 
 # 1. Get webpage url list #####################

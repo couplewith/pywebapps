@@ -9,14 +9,15 @@ def url_encode(text):
     return encoded_text
 
 # 테스트
-key_words=["파일복구","Rust 프로그래밍", "셀스크립트 작성", "빅데이터", "인공지능", "IT 트렌드", "Trends", "디지털 트렌스포메이션", "Digital Transformation", "Data mesh", "셀레니움", "파이썬", "SQL", "SQLite"]
+
+key_words=['경기도카페', "경기도근처카페", '경기도가볼만한곳','추천여행지',"핸드드립","드립커피","카페찾기", "당일여행", "추천카페", "멋진카페", "대형베이커리", "베이커리 카페", "주말여행"]
+
 
 # WebDriver 초기화
 driver = webdriver.Chrome()  # chromedriver 경로를 지정해야 합니다.
 
 # 초기 윈도우를 2개 더 오픈 합니다.
 driver.execute_script('window.open("about:blank", "_blank");')
-
 driver.execute_script('window.open("about:blank", "_blank");')
 tabs = driver.window_handles
 
@@ -26,10 +27,10 @@ time.sleep(2)
 url_lists = []
 for keyword in key_words:
     encoded_keyword = url_encode(keyword)
-    search_url = f"https://www.google.com/search?q={encoded_keyword}+site%3Acouplewith.tistory.com&oq={encoded_keyword}+site%3Acouplewith.tistory.com&sourceid=chrome&ie=UTF-8"
+    search_url = f"https://www.google.com/search?q={encoded_keyword}+site%3Asweetlifecafe.blogspot.com&oq={encoded_keyword}+site%3Asweetlifecafe.blogspot.com&sourceid=chrome&ie=UTF-8"
     driver.switch_to.window(driver.window_handles[0])
     driver.get(search_url)
-    print(search_url)
+    print(keyword,search_url)
 
     try:
         # 검색 결과 링크 가져오기

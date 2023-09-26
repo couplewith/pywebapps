@@ -2,13 +2,13 @@
 import os  # for checking file existence
 import sys  # for handling errors
 import re
+from io import StringIO
+from datetime import datetime
+from shutil import copyfile
 import requests
 import urllib.request
 import http.client
-from io import StringIO
-from datetime import datetime
-
-import requests
+import ssl
 
 
 DEBUG = 1
@@ -17,6 +17,9 @@ def debug(msg, mode=0):
         print(msg)
 
 
+def data_copyfile(src, dst):
+    copyfile(src, dst)
+
 def http_get(url, fn=2):
     #url = 'http://www.example.com'
     status_code = 0
@@ -24,15 +27,15 @@ def http_get(url, fn=2):
         if fn == 1:
             status_code = urllib.request.urlopen(url).getcode()
         elif fn == 2:
-            request_response = requests.head(url)
+            request_response = requests.head(url, verify=False)
             status_code = request_response.status_code
         else:
             conn = http.client.HTTPConnection(url)
             conn.request("HEAD", "/")
             response = conn.getresponse()
             status_code = response.status # response.reason (OK)
-    except:
-        print(">> http_get (exceprotn) ", url, status_code)
+    except Exception as e:
+        print(">> http_get (exception) ", url, status_code, e)
     finally:
         print(">> http_get (finally) ", url, status_code)
     return status_code
@@ -41,13 +44,12 @@ def check_url(url, idx):
 
     status = False
     status_code = None
-    for i in range(15):
+    for i in range(20):
         idx_tmp = int(idx) + i
         url_tmp = url.replace(str(idx), str(idx_tmp))
         print(">> check_url 1: ", url_tmp, idx_tmp)
+
         status_code = http_get(url_tmp)
-        #response = requests.get(url_tmp)
-        #status_code = response.status_code
         print(">> check_url 2: ", url_tmp, idx_tmp, status_code)
 
         if (status_code in [200, 301, 302] ):
@@ -60,13 +62,15 @@ def check_url(url, idx):
                 url = url_tmp
                 break
         else:
+            print(">> check_url 2: faild !! : ", url_tmp, idx_tmp, status_code)
             status = False
+
     return (url, status, status_code)
 
 def find_url(string):
     # findall() has been used
     # with valid conditions for urls in string
-    regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+    regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-가-힝]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
     url = re.findall(regex, string)
     return [x[0] for x in url]
 
@@ -146,10 +150,14 @@ new_url_list = []
 new_urls = []
 for item in url_list:
     debug(item, DEBUG)
-    #url = re.search("(https://[a-z./]{1,20})([0-9]{1,3})([a-z./]{1,})",url)
+    sub_str = "--"
+    if item != None and sub_str in item:
+        continue
+
+    #url = re.search("(https://[a-z./가-힣]{1,20})([0-9]{1,3})([a-z./가-힣]{1,})",url)
     urls = find_url(item)
-    debug(urls[0], DEBUG)
     match = re.search("[0-9]{1,}", urls[0])
+    debug( ("find url:match->", item, urls[0], match ), DEBUG)
 
     if (match ):
         debug (match, DEBUG)
@@ -157,18 +165,20 @@ for item in url_list:
     else:
         debug ("no match", DEBUG)
         idx_no = 0
-    print(urls[0], idx_no)
 
+    print(" check_url :start ", urls[0], idx_no)
     results = check_url(urls[0], idx_no)
-    #         (url, status, status_code)
+    #       result->(url, status, status_code)
 
-    print (urls[0], results[0], results[1])
+    print("check_url :end", item, "-->", urls, results[0], results[1])
+
     new_item =''
-    if ( results[1] == True):
+    if (results[1] == True):
         new_item = item.replace(urls[0], results[0])
+        debug((urls[0], results[0]), DEBUG)
         new_url_list.append(new_item)
         new_urls.append(results[0])
-    print (" >>> item", item, new_item)
+    print (" new_urls>>> item", item, new_item)
 
 
 print ("[END - status] ++++++++++++++++++++++++++++++")
