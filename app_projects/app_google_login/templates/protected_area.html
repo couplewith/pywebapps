@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Protected Page example</title>
+</head>
+<body>
+    <h1>Welcome, {{ data.name }}!</h1>
+    <p>This is the protected area of the website.</p>
+    <p> {{data.google_id}}</p>
+    <p> {{data}}</p>
+    <a class="button" href="{{ url_for('logout') }}">로그아웃하기</a>
+</body>
+</html>

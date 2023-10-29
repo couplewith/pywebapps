@@ -1,0 +1,27 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Navigation</title>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+         <div v-if="!dataFromFlask.current_user">
+            <p>You are not logged in.</p>
+            <button @click="login">login</button>
+        </div>
+        <div v-else>
+            <p>Welcome, {{ dataFromFlask.current_user.name }}!</p>
+            <p>Email: {{ dataFromFlask.current_user.email }}</p>
+            <button @click="logout">Logout</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://unpkg.com/vue-router@3"></script>
+    <script src="/static/app_index.js"></script>
+</body>
+</html>
