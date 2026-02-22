@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>📖 전체 논문 목록</h1>
+
+<div class="search-form">
+    <form method="get">
+        <input type="text" name="search" value="{{ search }}" placeholder="제목, 저자, 요약으로 검색...">
+        <input type="text" name="tags" value="{{ tags }}" placeholder="태그 검색 (AI,블록체인)">
+        <button type="submit">🔍 검색하기</button>
+        {% if search or tags %}
+            <a href="{{ url_for('main.index') }}" class="btn btn-secondary">모두보기</a>
+        {% endif %}
+    </form>
+</div>
+
+{% if papers %}
+    {% for paper in papers %}
+    <div class="post">
+        <h2>{{ paper.title }}</h2>
+        <div class="grid-2">
+            <div>
+                <p><strong>👤 저자:</strong> {{ paper.authors or '미입력' }}</p>
+                <p><strong>📅 {{ paper.year }}</strong> | <strong>📘 {{ paper.journal or '미입력' }}</strong></p>
+            </div>
+            <div style="text-align:right;">
+                <p><strong>🏷️ 태그:</strong> 
+                    {% if paper.paper_tags %}
+                        <span style="background:#e6fffa;padding:6px 12px;border-radius:25px;font-size:0.9em;color:#065f46;display:inline-block;margin-top:5px;">
+                            {{ paper.paper_tags }}
+                        </span>
+                    {% else %}
+                        <span style="color:#94a3b8;">없음</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        {% if paper.abstract_ko %}
+        <p style="margin-top:15px;"><strong>📝 요약:</strong> {{ paper.abstract_ko[:200] }}...</p>
+        {% endif %}
+        <div style="margin-top:20px;">
+            <a href="{{ url_for('papers.paper_info', paper_id=paper.id) }}" class="btn">📄 인용 보기</a>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="post" style="text-align:center;">
+        <h3>📭 검색 결과가 없습니다</h3>
+        <p style="color:#64748b;font-size:1.1em;">다른 키워드로 검색하거나 <a href="{{ url_for('papers.add_paper') }}">새 논문을 등록</a>해보세요.</p>
+    </div>
+{% endif %}
+
+<div style="text-align:center; margin:50px 0;">
+    <a href="{{ url_for('papers.add_paper') }}" class="btn" style="font-size:18px;padding:20px 40px;">🚀 새 논문 등록하기</a>
+</div>
+{% endblock %}
+
+<a href="{{ url_for('main.index') }}">홈</a>
+<a href="{{ url_for('papers.add_paper') }}">논문추가</a>
+<a href="{{ url_for('papers.paper_info', paper_id=paper.id) }}">인용보기</a>
+<a href="{{ url_for('main.export_xml') }}">XML내보내기</a>

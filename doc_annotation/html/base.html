@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}논문 인용 관리{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ✅ CSS 파일 링크 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- 추가 CSS (페이지별) -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="{{ url_for('main.index') }}">📚 논문목록</a>
+            <a href="{{ url_for('papers.add_paper') }}">➕ 논문추가</a>
+            <a href="{{ url_for('main.export_xml') }}">📤 XML내보내기</a>
+        </nav>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- ✅ JavaScript 파일 링크 -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- 추가 JS (페이지별) -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
