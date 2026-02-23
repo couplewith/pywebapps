@@ -1,1 +1,31 @@
-.idea/workspace.xml
+# IDE
+.idea/
+venv/
+.vscode/
+
+# Ollama app binaries and models
+.nv/
+.ollama/
+LLM_Synthetic/ollama_app/lib/
+LLM_Synthetic/ollama_app/models/
+LLM_Synthetic/ollama_app/.ollama/
+.synth_temp
+
+
+# Archives
+*.7z
+*.zip
+*.tgz
+*.tar.gz
+*.tar
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS-specific
+Thumbs.db
+.DS_Store
+*.log
+*.bak
+*.zip

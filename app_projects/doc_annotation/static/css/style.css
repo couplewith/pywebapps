@@ -1,0 +1,272 @@
+/* 기본 설정 */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* 네비게이션 */
+nav {
+    background: rgba(255,255,255,0.95);
+    padding: 18px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    backdrop-filter: blur(20px);
+}
+
+nav a {
+    color: #5a67d8;
+    text-decoration: none;
+    margin-right: 30px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12pt;
+}
+
+nav a:hover { 
+    background: linear-gradient(135deg, #7c8aff 0%, #9a6fd8 100%);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* 제목 */
+h1 { 
+    color: #2d3748; 
+    margin-bottom: 15px; 
+    font-size: 1.5em;
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 { 
+    color: #4a5568; 
+    margin: 35px 0 20px 0; 
+    border-bottom: 3px solid #e2e8f0; 
+    padding-bottom: 12px; 
+    font-size: 1.6em;
+}
+
+h3 { 
+    color: #4a5568; 
+    margin: 20px 0 12px 0; 
+}
+
+/* 입력 폼 */
+.form-container {
+    background: rgba(255,255,255,0.97);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    backdrop-filter: blur(15px);
+    margin: 25px 0;
+}
+
+.form-group { 
+    margin-bottom: 25px; 
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 12pt;
+}
+
+input[type="text"], 
+input[type="number"], 
+textarea {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 12pt;
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+    color: #2d3748;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+input:focus, 
+textarea:focus {
+    outline: none;
+    border-color: #5a67d8;
+    box-shadow: 0 0 0 4px rgba(90,103,216,0.15), inset 0 1px 2px rgba(0,0,0,0.05);
+    background: white;
+}
+
+textarea { 
+    resize: vertical; 
+    min-height: 120px;
+    font-family: inherit;
+}
+
+/* 버튼 */
+button, .btn {
+    background: linear-gradient(135deg, #e7a2eb 0%, #a78bfa 100%);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 12pt;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(124,138,255,0.4);
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, 
+.btn:hover {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(99,102,241,0.5);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #fca5c8 0%, #ff7a9a 100%);
+    box-shadow: 0 4px 15px rgba(255,122,154,0.4);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #fb7299 0%, #f43f5e 100%);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    color: #4338ca;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-size: 12pt;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+}
+
+/* 카드 */
+.post {
+    background: rgba(255,255,255,0.92);
+    padding: 30px;
+    margin: 25px 0;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+    border-left: 6px solid #7c8aff;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.post:hover { 
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.post p, 
+.post a {
+    font-size: 12pt;
+}
+
+blockquote {
+    font-style: italic;
+    color: #4a5568;
+    padding: 25px;
+    background: linear-gradient(135deg, #e6f3ff 0%, #f0f8ff 100%);
+    border-left: 5px solid #7c8aff;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-size: 12pt;
+    line-height: 1.7;
+    position: relative;
+}
+
+blockquote::before {
+    content: '"';
+    font-size: 4em;
+    color: #7c8aff;
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    opacity: 0.3;
+}
+
+/* 검색 폼 */
+.search-form {
+    background: rgba(255,255,255,0.92);
+    padding: 25px;
+    border-radius: 16px;
+    margin: 30px 0;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    backdrop-filter: blur(15px);
+}
+
+.search-form input {
+    padding: 14px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    margin-right: 15px;
+    width: 250px;
+    font-size: 12pt;
+}
+
+/* 플래시 메시지 */
+ul { 
+    list-style: none; 
+    margin: 20px 0; 
+}
+
+li {
+    background: linear-gradient(135deg, #6ee7b7 0%, #34d399 100%);
+    color: white;
+    padding: 16px 25px;
+    border-radius: 12px;
+    margin: 10px 0;
+    box-shadow: 0 4px 15px rgba(52,211,153,0.4);
+    font-size: 12pt;
+}
+
+.flash-error li { 
+    background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+}
+
+/* 그리드 */
+.grid-2 { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 25px; 
+}
+
+/* 반응형 */
+@media (max-width: 768px) { 
+    .grid-2 { 
+        grid-template-columns: 1fr; 
+    }
+    body { 
+        padding: 15px; 
+    }
+    input, textarea, button { 
+        width: 100% !important; 
+        margin-bottom: 15px; 
+    }
+}
