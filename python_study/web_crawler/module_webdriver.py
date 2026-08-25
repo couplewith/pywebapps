@@ -3,6 +3,7 @@ from selenium.common.exceptions import ElementClickInterceptedException, Timeout
     UnexpectedAlertPresentException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.common.action_chains import ActionChains
 # from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -71,6 +72,17 @@ def set_driver(browser, ui_mode=1):
 
     return driver
 
+def clear_cookie(driver):
+    ret = bool;
+
+
+    driver.implicitly_wait(10)  # Set a timeout of 10 seconds
+    # Delete all cookies
+    driver.delete_all_cookies()
+
+    return True
+
+
 start_time = time.time()
 def get_elapsed(init=0):
     global start_time  # global variable
@@ -127,3 +139,17 @@ def action_escape(driver):
     actions = ActionChains(driver)
     actions.send_keys(Keys.ESCAPE).perform()
     print(" > action_escape: send escape key - ", get_elapsed())
+
+def action_mouse_scroll(driver, offset=300):
+    # ActionChains 객체 생성
+    actions = ActionChains(driver)
+
+    # 휠을 위로 스크롤
+    actions.move_by_offset(0, offset)  # 예제에서는 300만큼 아래로 스크롤하도록 설정
+    actions.perform()
+
+    # 휠을 아래로 스크롤
+    actions.move_by_offset(0, offset * 0.5)  # 예제에서는 300만큼 위로 스크롤하도록 설정
+    actions.perform()
+
+    print(f" def> action_mouse_scroll  Done !!")
