@@ -121,7 +121,8 @@ else:
 options.add_argument("--lang=ko-KR")
 
 # undetected-chromedriver 드라이버 생성
-driver = uc.Chrome(options=options)
+#driver = uc.Chrome(options=options)
+driver = uc.Chrome(options=options, version_main=151)
 
 # CDP(Chrome DevTools Protocol)를 통해 신규 문서 생성 시 노이즈 주입 스크립트 선행 평가
 driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
